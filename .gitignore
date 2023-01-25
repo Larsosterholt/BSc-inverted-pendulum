@@ -17,8 +17,8 @@ octave-workspace
 
 # Simulink autosave extension
 .autosave
-.eep
-.hex
-.elf
+*.eep
+*.hex
+*.elf
 *_rtw
-.slxc
+*.slxc
