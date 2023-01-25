@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<SimscapeMultibodyImportXML version="2.0" xmlns="urn:mathworks:SimscapeMultibody:import" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Created by="" on="01/16/23||13:25:52" using="Simscape Multibody Link Version 7.4" from="SolidWorks 29.3.0"/>
+<ModelUnits mass="kilogram" length="millimeter"/>
+<DataUnits mass="kilogram" length="meter"/>
+<RootAssembly name="main_assembly" uid="main_assembly" version="224">
+<AssemblyFile name="main_assembly.SLDASM" type="SolidWorks Assembly"/>
+<InstanceTree>
+<Instance name="elbow-1" uid="elbow-1" entityUid="elbow*:*Default">
+<Transform>
+<Rotation>-0.13714423008350357 0.72718798423009445 0.67259876281939057 0.99055108911898282 0.10068096165732882 0.093122949936911101 -3.4802301342806166e-15 0.67901471232303012 -0.73412466274391885</Rotation>
+<Translation>0.0080053402594265112 -0.12205540441240531 -0.058148176547875907</Translation>
+</Transform>
+</Instance>
+<Instance name="magnet_holder-1" uid="magnet_holder-1" entityUid="magnet_holder*:*Default">
+<Transform>
+<Rotation>-0.7271879842300949 0.67259876281939113 0.13714423008349963 -0.10068096165732318 0.093122949936911392 -0.9905510891189836 -0.67901471232303057 -0.73412466274391852 -5.3424134064753542e-16</Rotation>
+<Translation>-0.013028701857932382 0.094102353466302163 -0.049999999999999871</Translation>
+</Transform>
+</Instance>
+<Instance name="elbow-2" uid="elbow-2" entityUid="elbow*:*Default">
+<Transform>
+<Rotation>0.13714423008350088 0.72718798423009545 -0.67259876281939002 -0.99055108911898315 0.10068096165732551 -0.093122949936910698 1.387240959901182e-15 0.67901471232302946 0.7341246627439193</Rotation>
+<Translation>0.0080053402594260949 -0.12205540441240523 -0.058148176547876129</Translation>
+</Transform>
+</Instance>
+<Instance name="carbon_rod-2" uid="carbon_rod-2" entityUid="carbon_rod*:*Default">
+<Transform>
+<Rotation>-0.72718798423009579 0.13714423008349949 -0.67259876281939013 -0.10068096165732321 -0.99055108911898349 -0.09312294993691117 -0.67901471232302968 -5.4503713073838613e-16 0.73412466274391941</Rotation>
+<Translation>0.0030171730618370578 -0.021792123960618887 -0.04999999999999994</Translation>
+</Transform>
+</Instance>
+<Instance name="carbon_rod-1" uid="carbon_rod-1" entityUid="carbon_rod*:*Default">
+<Transform>
+<Rotation>-0.13714423008350179 0.72718798423009579 0.67259876281938991 0.99055108911898304 0.10068096165732621 0.093122949936911309 -1.377947495952776e-15 0.67901471232302946 -0.73412466274391985</Rotation>
+<Translation>-0.074160351365867586 -0.13343144613404112 -0.13487072239802603</Translation>
+</Transform>
+</Instance>
+<Instance name="double_bearing_housing-1" uid="double_bearing_housing-1" entityUid="double_bearing_housing*:*Default">
+<Transform>
+<Rotation>-0.99055108911898337 0.1371442300835011 0 -0.1371442300835011 -0.99055108911898337 0 0 0 1</Rotation>
+<Translation>-0.01371442300835026 0.099055108911896991 -0.050000000000000003</Translation>
+</Transform>
+</Instance>
+<Instance name="dummy_base_bearing-1" uid="dummy_base_bearing-1" entityUid="dummy_base_bearing*:*Default">
+<Transform>
+<Rotation>1 0 0 0 0 1 0 -1 0</Rotation>
+<Translation>0 0 0</Translation>
+</Transform>
+</Instance>
+</InstanceTree>
+<Constraints>
+<Concentric name="Concentric1">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>double_bearing_housing-1</Uid>
+</InstancePath>
+<Position>0 0.20000000000000007 0</Position>
+<Axis>0 -1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>carbon_rod-2</Uid>
+</InstancePath>
+<Position>0 0.12000000000000004 0</Position>
+<Axis>0 -1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Concentric name="Concentric2">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>carbon_rod-1</Uid>
+</InstancePath>
+<Position>0 0.12000000000000005 0</Position>
+<Axis>0 -1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>elbow-1</Uid>
+</InstancePath>
+<Position>0 0.020000000000000004 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Concentric name="Concentric3">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>carbon_rod-1</Uid>
+</InstancePath>
+<Position>0 0.12000000000000005 0</Position>
+<Axis>0 -1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>elbow-2</Uid>
+</InstancePath>
+<Position>0 0.019999999999999997 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Parallel name="Parallel3">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>elbow-1</Uid>
+</InstancePath>
+<Position>0.004990991885387111 0.020000000000000004 -0.00030000000000000165</Position>
+<Axis>0 0 0.99999999999999989</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>elbow-2</Uid>
+</InstancePath>
+<Position>0.0049909918853871249 0.019999999999999997 -0.00030000000000000165</Position>
+<Axis>0 0 0.99999999999999978</Axis>
+</ConstraintGeometry>
+</Parallel>
+<Coincident name="Coincident8">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>carbon_rod-1</Uid>
+</InstancePath>
+<Position>0 0.12000000000000005 0</Position>
+<Axis>0 1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="line">
+<InstancePath>
+<Uid>elbow-1</Uid>
+</InstancePath>
+<Position>-0.0049909918853870694 0.0070090081146128858 -0.00029999999999999472</Position>
+<Axis>-1 0 2.1822098352198276e-16</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Coincident name="Coincident9">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>elbow-1</Uid>
+</InstancePath>
+<Position>0 0.020000000000000004 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>elbow-2</Uid>
+</InstancePath>
+<Position>0 0.019999999999999997 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Coincident name="Coincident10">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>carbon_rod-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 0 1.0000000000000004</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>elbow-2</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 0 0.99999999999999978</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric4">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>carbon_rod-2</Uid>
+</InstancePath>
+<Position>0 0.12000000000000004 0</Position>
+<Axis>0 -1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>elbow-2</Uid>
+</InstancePath>
+<Position>-0.009999999999999995 0.012000000000000004 0</Position>
+<Axis>1 0 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident11">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>carbon_rod-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 0 1.0000000000000004</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>carbon_rod-2</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 0 1</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Distance name="Distance1">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>carbon_rod-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>1 0 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>carbon_rod-2</Uid>
+</InstancePath>
+<Position>0 0.12000000000000004 0</Position>
+<Axis>0 1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+</Distance>
+<Concentric name="Concentric5">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>carbon_rod-2</Uid>
+</InstancePath>
+<Position>0 0.12000000000000004 0</Position>
+<Axis>0 -1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>magnet_holder-1</Uid>
+</InstancePath>
+<Position>0 0 -0.012636476619935694</Position>
+<Axis>0 0 -1.0000000000000002</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident13">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>carbon_rod-2</Uid>
+</InstancePath>
+<Position>0 -0.12000000000000002 0</Position>
+<Axis>0 -1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>magnet_holder-1</Uid>
+</InstancePath>
+<Position>0.0050000000000000114 0 -0.0030000000000000027</Position>
+<Axis>0 0 1.0000000000000002</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Coincident name="Coincident14">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>carbon_rod-2</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 0 1</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>magnet_holder-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Coincident name="Coincident15">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>double_bearing_housing-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 -1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>magnet_holder-1</Uid>
+</InstancePath>
+<Position>0.0020000000000000018 0 -0.0049999999999999906</Position>
+<Axis>0 0 -1.0000000000000002</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Coincident name="Coincident17">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>dummy_base_bearing-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>main_assembly</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 0 1</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Coincident name="Coincident18">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>dummy_base_bearing-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 0 1</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>main_assembly</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Coincident name="Coincident19">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>dummy_base_bearing-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>1 0 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>main_assembly</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>1 0 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric6">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>double_bearing_housing-1</Uid>
+</InstancePath>
+<Position>0 0.10000000000000005 0.044999999999999998</Position>
+<Axis>0 0 -1</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>dummy_base_bearing-1</Uid>
+</InstancePath>
+<Position>0 0.025000000000000001 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Distance name="Distance2">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>double_bearing_housing-1</Uid>
+</InstancePath>
+<Position>-0.012500000000000001 0.20000000000000007 0.02</Position>
+<Axis>0 0 1</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>dummy_base_bearing-1</Uid>
+</InstancePath>
+<Position>0 0.025000000000000001 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+</Distance>
+</Constraints>
+</RootAssembly>
+<Assemblies>
+</Assemblies>
+<Parts>
+<Part name="carbon_rod" uid="carbon_rod*:*Default" version="109">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="carbon_rod.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>0.013571680263507907</Mass>
+<CenterOfMass>0 0 0</CenterOfMass>
+<Inertia>6.5283174987538828e-05 2.7821944540191212e-07 6.5283174987538828e-05 0 0 0</Inertia>
+</MassProperties>
+<GeometryFile name="carbon_rod_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Diffuse r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Specular r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.3125</Shininess>
+</VisualProperties>
+</Part>
+<Part name="double_bearing_housing" uid="double_bearing_housing*:*Default" version="455">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="double_bearing_housing.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>0.055187121604295487</Mass>
+<CenterOfMass>-9.4707499229456067e-06 0.10038781430950745 0.014893396077084717</CenterOfMass>
+<Inertia>0.00019392450907071835 4.2163100708119523e-06 0.00019533130610129479 2.3631523609396011e-07 2.4132523086756783e-09 -2.0267293675826191e-10</Inertia>
+</MassProperties>
+<GeometryFile name="double_bearing_housing_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="1" g="1" b="1" a="1"/>
+<Diffuse r="1" g="1" b="1" a="1"/>
+<Specular r="1" g="1" b="1" a="1"/>
+<Emissive r="0.29999999999999999" g="0.29999999999999999" b="0.29999999999999999" a="1"/>
+<Shininess>0.3125</Shininess>
+</VisualProperties>
+</Part>
+<Part name="dummy_base_bearing" uid="dummy_base_bearing*:*Default" version="108">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="dummy_base_bearing.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>0.80110612666539727</Mass>
+<CenterOfMass>0 0 0</CenterOfMass>
+<Inertia>0.00029707685530508491 0.00026035949116625414 0.00029707685530508496 0 0 0</Inertia>
+</MassProperties>
+<GeometryFile name="dummy_base_bearing_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="0.6470588235294118" g="0.51764705882352935" b="0" a="1"/>
+<Diffuse r="0.6470588235294118" g="0.51764705882352935" b="0" a="1"/>
+<Specular r="0.45294117647058824" g="0.36235294117647054" b="0" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.3125</Shininess>
+</VisualProperties>
+</Part>
+<Part name="elbow" uid="elbow*:*Default" version="168">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="elbow.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>0.0016701329394274004</Mass>
+<CenterOfMass>-5.9726648473323834e-08 0.0013002317849984506 -0.004237041979374993</CenterOfMass>
+<Inertia>2.3117940872943974e-07 4.7553165514279097e-08 2.6821624682703407e-07 4.6475649753186833e-09 -5.0183226486986941e-13 8.1225856616902783e-14</Inertia>
+</MassProperties>
+<GeometryFile name="elbow_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="1" g="1" b="1" a="1"/>
+<Diffuse r="1" g="1" b="1" a="1"/>
+<Specular r="1" g="1" b="1" a="1"/>
+<Emissive r="0.29999999999999999" g="0.29999999999999999" b="0.29999999999999999" a="1"/>
+<Shininess>0.3125</Shininess>
+</VisualProperties>
+</Part>
+<Part name="magnet_holder" uid="magnet_holder*:*Default" version="126">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="magnet_holder.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>0.00091646540890521512</Mass>
+<CenterOfMass>0 0 -0.00063636363636363695</CenterOfMass>
+<Inertia>2.3610248316969067e-08 2.361024831696907e-08 3.043241953976517e-08 0 0 0</Inertia>
+</MassProperties>
+<GeometryFile name="magnet_holder_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="1" g="1" b="1" a="1"/>
+<Diffuse r="1" g="1" b="1" a="1"/>
+<Specular r="1" g="1" b="1" a="1"/>
+<Emissive r="0.29999999999999999" g="0.29999999999999999" b="0.29999999999999999" a="1"/>
+<Shininess>0.3125</Shininess>
+</VisualProperties>
+</Part>
+</Parts>
+</SimscapeMultibodyImportXML>

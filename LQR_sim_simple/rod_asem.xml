@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<SimscapeMultibodyImportXML version="2.0" xmlns="urn:mathworks:SimscapeMultibody:import" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Created by="" on="09/26/22||21:25:43" using="Simscape Multibody Link Version 7.4" from="SolidWorks 29.3.0"/>
+<ModelUnits mass="kilogram" length="millimeter"/>
+<DataUnits mass="kilogram" length="meter"/>
+<RootAssembly name="rod_asem" uid="rod_asem" version="238">
+<AssemblyFile name="rod_asem.SLDASM" type="SolidWorks Assembly"/>
+<InstanceTree>
+<Instance name="90_deg_bend-1" uid="90_deg_bend-1" entityUid="90_deg_bend*:*Default">
+<Transform>
+<Rotation>0.021788127745108032 -0.99976261056781035 0 0.99976261056781035 0.021788127745108032 0 0 0 1</Rotation>
+<Translation>-0.010497507410962031 0.00022877534132374289 0.16800000000000001</Translation>
+</Transform>
+</Instance>
+<Instance name="carbon_fiber_rod_short-1" uid="carbon_fiber_rod_short-1" entityUid="carbon_fiber_rod_short*:*Default">
+<Transform>
+<Rotation>-0.021788127745108025 0 -0.99976261056781035 -0.99976261056781035 0 0.021788127745108025 0 1 0</Rotation>
+<Translation>0 0 0</Translation>
+</Transform>
+</Instance>
+<Instance name="dummy_bearing-1" uid="dummy_bearing-1" entityUid="dummy_bearing*:*Default">
+<Transform>
+<Rotation>0 0 1 -1 0 0 0 -1 0</Rotation>
+<Translation>0 0 0</Translation>
+</Transform>
+</Instance>
+<Instance name="carbon_fiber_rod-1" uid="carbon_fiber_rod-1" entityUid="carbon_fiber_rod*:*Default">
+<Transform>
+<Rotation>0.021788127745108032 -0.99976261056781035 0 0.99976261056781035 0.021788127745108032 0 0 0 1</Rotation>
+<Translation>-0.25493946569479287 0.0055559725750029612 0.16800000000000001</Translation>
+</Transform>
+</Instance>
+</InstanceTree>
+<Constraints>
+<Coincident name="Coincident11">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>dummy_bearing-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 0 1</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>rod_asem</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>1 0 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Coincident name="Coincident12">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>dummy_bearing-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>rod_asem</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 0 1</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Coincident name="Coincident13">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>dummy_bearing-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>1 0 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>rod_asem</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Tangent name="Tangent2">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>90_deg_bend-1</Uid>
+</InstancePath>
+<Position>0 -0.010500000000000008 -0.012500000000000011</Position>
+<Axis>0 0 1</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>carbon_fiber_rod-1</Uid>
+</InstancePath>
+<Position>0 -0.25000000000000011 0</Position>
+<Axis>0 -1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+</Tangent>
+<Coincident name="Coincident14">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>90_deg_bend-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>1.0000000000000002 0 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>carbon_fiber_rod-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>1.0000000000000002 0 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric4">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>90_deg_bend-1</Uid>
+</InstancePath>
+<Position>0 -0.0075000000000000032 0</Position>
+<Axis>0 1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>carbon_fiber_rod-1</Uid>
+</InstancePath>
+<Position>0 0.25000000000000011 0</Position>
+<Axis>0 -1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Concentric name="Concentric5">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>90_deg_bend-1</Uid>
+</InstancePath>
+<Position>0 -0.010500000000000008 -0.012500000000000011</Position>
+<Axis>0 0 1</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>carbon_fiber_rod_short-1</Uid>
+</InstancePath>
+<Position>0 0.17499999999999999 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Tangent name="Tangent3">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>90_deg_bend-1</Uid>
+</InstancePath>
+<Position>0 0.017500000000000005 0</Position>
+<Axis>0 -1.0000000000000002 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>carbon_fiber_rod_short-1</Uid>
+</InstancePath>
+<Position>0 0.17499999999999999 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+</Tangent>
+<Coincident name="Coincident15">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>90_deg_bend-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>1.0000000000000002 0 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>carbon_fiber_rod_short-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>1.0000000000000002 0 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+<Concentric name="Concentric6">
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>carbon_fiber_rod_short-1</Uid>
+</InstancePath>
+<Position>0 0.17499999999999999 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="cylinder">
+<InstancePath>
+<Uid>dummy_bearing-1</Uid>
+</InstancePath>
+<Position>0 0.02 0</Position>
+<Axis>0 -1 0</Axis>
+</ConstraintGeometry>
+</Concentric>
+<Coincident name="Coincident16">
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>carbon_fiber_rod_short-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+<ConstraintGeometry geomType="plane">
+<InstancePath>
+<Uid>dummy_bearing-1</Uid>
+</InstancePath>
+<Position>0 0 0</Position>
+<Axis>0 1 0</Axis>
+</ConstraintGeometry>
+</Coincident>
+</Constraints>
+</RootAssembly>
+<Assemblies>
+</Assemblies>
+<Parts>
+<Part name="90_deg_bend" uid="90_deg_bend*:*Default" version="116">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="90_deg_bend.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>0.0099164983780856732</Mass>
+<CenterOfMass>3.066712567995758e-08 9.715793475974631e-05 -2.8534444498437602e-07</CenterOfMass>
+<Inertia>1.2812767894592099e-06 3.4798836922945037e-07 1.3145502619422974e-06 2.199647114815779e-11 -3.952951840361596e-11 -1.8183024588597062e-12</Inertia>
+</MassProperties>
+<GeometryFile name="90_deg_bend_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="1" g="0.94901960784313721" b="0.89803921568627454" a="1"/>
+<Diffuse r="1" g="0.94901960784313721" b="0.89803921568627454" a="1"/>
+<Specular r="0.01" g="0.0094901960784313719" b="0.0089803921568627453" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.3125</Shininess>
+</VisualProperties>
+</Part>
+<Part name="carbon_fiber_rod" uid="carbon_fiber_rod*:*Default" version="118">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="carbon_fiber_rod.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>0.028274333882308156</Mass>
+<CenterOfMass>0 0 0.00028191397282155677</CenterOfMass>
+<Inertia>0.00058933492335087238 5.7611272507917934e-07 0.00058933843447038048 0 0 0</Inertia>
+</MassProperties>
+<GeometryFile name="carbon_fiber_rod_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Diffuse r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Specular r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.3125</Shininess>
+</VisualProperties>
+</Part>
+<Part name="carbon_fiber_rod_short" uid="carbon_fiber_rod_short*:*Default" version="121">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="carbon_fiber_rod_short.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>0.019792033717615697</Mass>
+<CenterOfMass>0 0 0.00028191397282155704</CenterOfMass>
+<Inertia>0.00020224408809594335 4.0327890755542544e-07 0.00020224654587959901 0 0 0</Inertia>
+</MassProperties>
+<GeometryFile name="carbon_fiber_rod_short_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Diffuse r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Specular r="0.25098039215686274" g="0.25098039215686274" b="0.25098039215686274" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.3125</Shininess>
+</VisualProperties>
+</Part>
+<Part name="dummy_bearing" uid="dummy_bearing*:*Default" version="111">
+<ModelUnits mass="kilogram" length="millimeter"/>
+<PartFile name="dummy_bearing.SLDPRT" type="SolidWorks Part"/>
+<MassProperties>
+<Mass>0.011943078631886962</Mass>
+<CenterOfMass>0 0 0</CenterOfMass>
+<Inertia>1.8133574389415039e-06 4.4189390937981745e-07 1.8133574389415039e-06 0 0 0</Inertia>
+</MassProperties>
+<GeometryFile name="dummy_bearing_Default_sldprt.STEP" type="STEP"/>
+<VisualProperties>
+<Ambient r="1" g="0.94901960784313721" b="0.89803921568627454" a="1"/>
+<Diffuse r="1" g="0.94901960784313721" b="0.89803921568627454" a="1"/>
+<Specular r="0.01" g="0.0094901960784313719" b="0.0089803921568627453" a="1"/>
+<Emissive r="0" g="0" b="0" a="1"/>
+<Shininess>0.3125</Shininess>
+</VisualProperties>
+</Part>
+</Parts>
+</SimscapeMultibodyImportXML>
