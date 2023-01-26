@@ -1,5 +1,5 @@
 # Simulink-inverted-pendulum
-Simulation of a single inverted pendulum on a rotating body using a LQR controller.
+Simulation of a single inverted pendulum on a rotating body using a LQR controller. This is a simplfyed vertion of the final product.
 Before running Simulink model: Run "lqr_design.mlx". This estimates the K matrix for the control system and add parameters to the model.
 
 # “system_analyzer/”
@@ -10,3 +10,5 @@ Is a numerical solution of the differential equation of a pendulum VS the model 
 
 # "rod_asem_DataFile.m"
 Here is the initial conditions.
+
+

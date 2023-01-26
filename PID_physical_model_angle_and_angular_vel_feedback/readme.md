@@ -1,4 +1,5 @@
-# Controll on physical model using only angle feed back, Does not work well.
+# Controll on physical model using angle and angle velocity feed back.
+
 
 Run parameters.mlx before running simulink for setting parameters for the model.
 
