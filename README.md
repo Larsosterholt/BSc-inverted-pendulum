@@ -11,7 +11,7 @@ A simple simulation of Furuta pendulum in simscape using LQR. The model is not t
 Derivation of system equations and parameter estimation. 
 
 ## PID_physical_model_angle_and_angular_vel_feedback/ 
-PID implementation of real model with swing up.
+PID implementation on real model with swing up.
 
 ## PID_physical_model_angle_feedback/ 
 Does not work. An attempt to control the pendulum without angular velocity feedback.
@@ -20,7 +20,7 @@ Does not work. An attempt to control the pendulum without angular velocity feedb
 Using the DC-motor as a servo with PID. A template on how to use the DC-motor as a servo motor. This uses feedback from: current, angular velocity and angle.
 
 ## PID_sim/ 
-Simulating the pendulum using simscape using PID. 
+Simulating the pendulum in simscape using PID. 
 
 ## LQR_simulation/ 
 Simulate the pendulum in matlab. Using un linear mathematical model, LQR regulator and a swing up alogrithim. This is solved using Runge-Kutta 4.
