@@ -1,12 +1,29 @@
-# Bsc inverted pendulum simulation and implimentation on real model
+# Bsc inverted pendulum simulation and implementation on real model
+How to use: todo.
 
 ## data/ 
-test data
+Test data used to estimate the mathematical model.
 
-LQR_sim_simple/ A simple simulation of furuta pendulum in simscape using LQR
-matlab_calculations/ drivation of system equations an parameter estimation
-PID_physical_model_angle_and_angular_vel_feedback/ PID implimentation of real model
-PID_physical_model_angle_feedback/ does not work
-PID_servo_angle_control/ Using the DC-motor as a servor "template"
-PID_sim/ Simulating the pendulum using simscape using PID
-LQR_simulation/ simulate the pendulum in matlab. 
+## LQR_sim_simple/ 
+A simple simulation of Furuta pendulum in simscape using LQR. The model is not the same as the physical.
+
+## matlab_calculations/ 
+Derivation of system equations and parameter estimation. 
+
+## PID_physical_model_angle_and_angular_vel_feedback/ 
+PID implementation of real model with swing up.
+
+## PID_physical_model_angle_feedback/ 
+Does not work. An attempt to control the pendulum without angular velocity feedback.
+
+## PID_servo_angle_control/ 
+Using the DC-motor as a servo with PID. A template on how to use the DC-motor as a servo motor. This uses feedback from: current, angular velocity and angle.
+
+## PID_sim/ 
+Simulating the pendulum using simscape using PID. 
+
+## LQR_simulation/ 
+Simulate the pendulum in matlab. Using un linear mathematical model, LQR regulator and a swing up alogrithim. This is solved using Runge-Kutta 4.
+
+## LQR_physical/
+LQR implementation of real model with swing up. The LQR-gain is calculated in: LQR_simulation/ sim_LQR.m 
