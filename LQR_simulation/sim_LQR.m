@@ -21,7 +21,12 @@ kSwingUp = -5;
 U = 0;
 
 % For LQR
-A = [0, 1, 0, 0, 0; (g*m_P*(m_P*l_B^2 + I_B))/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P), -(B_P*(m_P*l_B^2 + I_B))/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P), 0, (B_B*l_B*l_P*m_P)/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P), -(K_t*l_B*l_P*m_P)/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P); 0, 0, 0, 1, 0; -(g*l_B*l_P*m_P^2)/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P), (B_P*l_B*l_P*m_P)/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P), 0, -(B_B*(m_P*l_P^2 + I_P))/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P), (K_t*(m_P*l_P^2 + I_P))/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P); 0, 0, 0, -K_e/L, -R/L];
+A = [0, 1, 0, 0, 0; 
+    (g*m_P*(m_P*l_B^2 + I_B))/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P), -(B_P*(m_P*l_B^2 + I_B))/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P), 0, (B_B*l_B*l_P*m_P)/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P), -(K_t*l_B*l_P*m_P)/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P); 
+    0, 0, 0, 1, 0; 
+    -(g*l_B*l_P*m_P^2)/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P), (B_P*l_B*l_P*m_P)/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P), 0, -(B_B*(m_P*l_P^2 + I_P))/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P), (K_t*(m_P*l_P^2 + I_P))/(I_P*m_P*l_B^2 + I_B*m_P*l_P^2 + I_B*I_P); 
+    0, 0, 0, -K_e/L, -R/L];
+
 B = [0; 0; 0; 0; 1/L];
 QLQR = [
     10 0 0 0 0;
@@ -35,7 +40,7 @@ kLqr = lqr(A, B, QLQR, RLQR);
 
 odeFunHandler = @(t, x) odeFun(t, x, l_B, l_P, I_B, I_P, L, m_P, B_B, B_P, R, g, K_t, K_e, B, U, kSwingUp, kLqr);
 
-tspan = [0 5];
+tspan = [0 8];
 % Initial condition
 x0 = [
     pi;
@@ -60,6 +65,7 @@ figure
 plot(t, x(:, 5), LineWidth=2);
 
 function dxdt = odeFun(t, x, l_B, l_P, I_B, I_P, L, m_P, B_B, B_P, R, g, K_t, K_e, B, U, kSwingUp, kLqr)
+
 if((x(1) <= 0.15) | (x(1) >= (2*pi - 0.15)))
     U = LQRController(x, kLqr);
 else
@@ -81,7 +87,5 @@ end
 
 
 function U = LQRController(x, kLqr)
-    %x(1) = awgn(x(1), 0.05);
-    %x(2) = awgn(x(2), 0.05);
     U = -kLqr*x;
 end
