@@ -2,22 +2,15 @@ testNumber = 'one';
 
 %load('data/rmsTest.mat')
 
-rmsTest.testNumber.time = simout_time;
-rmsTest.testNumber.timeTrigger = simout_trigger;
-
-rmsTest.testNumber.pendAngleZeroUp = simout_pendAngleZeroUp;
-rmsTest.testNumber.pendAngleZeroDwn = simout_pendAngleZeroDwn;
-rmsTest.testNumber.pendAngleVel = simout_pendAngleVel;
-rmsTest.testNumber.pendAngleTrigger = simout_pendAngleTrigger;
-
-rmsTest.testNumber.baseAngle = simout_baseAngle;
-rmsTest.testNumber.baseAngleVel = simout_baseAngleVel;
-rmsTest.testNumber.baseAngleTrigger = simout_baseAngleTrigger;
-
-rmsTest.testNumber.PWM = simout_PWM;
-%rmsTest.testNumber.Current = simout_Current;
-
-save('data/rmsTest.mat', 'rmsTest')
+rmsTest.(testNumber).time = time;
+rmsTest.(testNumber).timeTrigger = trigger;
+rmsTest.(testNumber).Current = current;
 
 
+rmsTest.(testNumber).pendAngleZeroUp = pendZeroUp;
+rmsTest.(testNumber).pendAngleZeroDwn = pendZeroDwn;
+rmsTest.(testNumber).baseAngle = base;
+rmsTest.(testNumber).description = "Test on model without current feedback"
+
+%save('data/rmsTest.mat', 'rmsTest')
 

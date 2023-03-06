@@ -17,7 +17,7 @@ K_t = 0.089240515 ; % [Nm/A] Motor tourqe constant.
 K_e = 0.089240515 * 0.7; % [V/(rad/s)] Motor back EMF constant.
 
 % Controller gains
-kSwingUp = -5;
+kSwingUp = -(110/255)*11;
 U = 0;
 
 % For LQR
@@ -44,7 +44,7 @@ tspan = [0 8];
 % Initial condition
 x0 = [
     pi;
-    0.0001;
+    -0.0001;
     0;
     0;
     0];
