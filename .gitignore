@@ -24,3 +24,6 @@ octave-workspace
 *.elf
 *_rtw
 *.slxc
+*.eps
+*.tex
+*.sty
