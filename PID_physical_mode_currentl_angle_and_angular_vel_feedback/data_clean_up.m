@@ -12,5 +12,5 @@ rmsTest.(testNumber).pendAngleZeroDwn = pendZeroDwn;
 rmsTest.(testNumber).baseAngle = base;
 rmsTest.(testNumber).description = "Test on model without current feedback"
 
-save('data/rmsTest.mat', 'rmsTest')
+%save('data/rmsTest.mat', 'rmsTest')
 
