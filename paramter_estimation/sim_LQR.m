@@ -113,6 +113,6 @@ title('Pendulum angle'); ylabel('Angle [rad]'); xlabel('time [s]');
 figure
 plot(t, x(:, 3), LineWidth=2);
 title('Base angle'); ylabel('Angle [rad]'); xlabel('time [s]');
-figure
+figure %
 
 plot(t, x(:, 5), LineWidth=2);
