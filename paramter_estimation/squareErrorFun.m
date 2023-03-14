@@ -1,7 +1,7 @@
 function obj = squareErrorFun(p, pendAngleMeasured, baseAngleMeasured)
 
 % Simulate with the curren values of p
-ts = [0:1/250:16];
+ts = [0:1/200:16];
 
 x0 = [
     pi;
@@ -11,12 +11,12 @@ x0 = [
     0];
 
 odeFunHandler = @(t, x) odeFunSys(t, x, p);
-[t, x] = ode45(odeFunHandler, ts, x0);
+[~, x] = ode45(odeFunHandler, ts, x0);
 
 
 % Cost function
-A = ((x(:,1)-pendAngleMeasured).^2);
-B = ((x(:,3)-baseAngleMeasured).^2);
+A = ((pendAngleMeasured - x(:,1)).^2);
+B = 0;%((x(:,3)-baseAngleMeasured).^2);
 obj = sum(A+B);
 
 %Return the cost
