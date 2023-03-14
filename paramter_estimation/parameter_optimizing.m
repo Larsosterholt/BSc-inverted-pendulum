@@ -6,7 +6,7 @@ clc; clear; close all;
 %pendTest.data_1.time(1:round(0.12*250)) = [];
 %pendTest.data_1.angle = pendTest.data_1.angle(:) - pendTest.data_1.angle(1);
 %pendTest.data_1.time = pendTest.data_1.time(:) - pendTest.data_1.time(1);
-
+% Blarg
 % Load test data for comparing the model
 load("data\impulsTest100.mat");
 disp(impulseTest.description)
