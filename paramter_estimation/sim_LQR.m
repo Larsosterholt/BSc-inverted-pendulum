@@ -36,7 +36,7 @@ p0(11) = K_e;
 
 % Lower and upper bounds
 lb = p0*0.5;
-ub = p0*1.5;
+ub = p0*2;
 
 % Test data to compare
 pendAngleMeasured = (-1)*impulseTest.pendAngle.signals.values + pi;
