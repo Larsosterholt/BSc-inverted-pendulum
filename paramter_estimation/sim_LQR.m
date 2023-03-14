@@ -26,12 +26,13 @@ R = 5; % [Omh] Motor resistance.
 K_t = 0.089240515 ; % [Nm/A] Motor tourqe constant.
 K_e = 0.089240515 * 0.7; % [V/(rad/s)] Motor back EMF constant.
 
-
-%% Optimizing
 %Creating initial guess vector
 p0(1) = l_B; p0(2) = l_P; p0(3) = I_B; p0(4) = I_P; p0(5) = L;
 p0(6) = m_P; p0(7) = B_B; p0(8) = B_P; p0(9) = R; p0(10) = K_t;
 p0(11) = K_e;
+
+%% Optimizing
+
 
 % Lower and upper bounds
 lb = p0*0.8;
@@ -45,13 +46,16 @@ baseAngleMeasured = impulseTest.baseAngle.signals.values;
 fun = @(p) squareErrorFun(p, pendAngleMeasured, baseAngleMeasured);
 
 % Starting paralell computing
-parpool 
+if max(size(gcp)) == 0 % parallel pool needed
+    parpool % create the parallel pool
+end
 options = optimoptions('fmincon', 'UseParallel',true);
 
 % Start optimizing
 startTime = tic;
 %[p, fval] = fminunc(fun, p0)
 [p, fval] = fmincon(fun, p0, [], [], [], [], lb, ub)
+time_fmincon_parallel = toc(startTime);
 fprintf('Parallel FMINCON optimization takes %g seconds.\n',time_fmincon_parallel);
 
 %Save the vector and fval
@@ -59,7 +63,7 @@ save('p.mat', 'p');
 save('fval.mat', 'fval');
 
 
-%% Plotting befor with values before optimizing:
+%% Plotting with values before optimizing:
 tspan = [0:1/250:16];
 
 % Initial condition
@@ -86,7 +90,7 @@ figure
 
 plot(t, x(:, 5), LineWidth=2);
 
-%% Plotting befor with values after optimizing:
+%% Plotting with values after optimizing:
 tspan = [0:1/250:16];
 
 % Initial condition
