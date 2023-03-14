@@ -1,5 +1,5 @@
 clc; clear; close all;
-
+% hei
 %Loading and cleaning up test data
 %load("data\PendTest.mat");
 %pendTest.data_1.angle(1:round(0.12*250)) = [];
