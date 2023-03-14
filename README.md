@@ -11,7 +11,10 @@ A simple simulation of Furuta pendulum in simscape using LQR. The model is not t
 Derivation of system equations and parameter estimation. 
 
 ## PID_physical_model_angle_and_angular_vel_feedback/ 
-PID implementation on real model with swing up.
+PID implementation on real model with swing up. Without current feedback
+
+## PID_physical_mode_currentl_angle_and_angular_vel_feedback
+PID implementation on real model with swing up. With current feedback
 
 ## PID_physical_model_angle_feedback/ 
 Does not work. An attempt to control the pendulum without angular velocity feedback.
@@ -27,3 +30,6 @@ Simulate the pendulum in matlab. Using un linear mathematical model, LQR regulat
 
 ## LQR_physical/
 LQR implementation of real model with swing up. The LQR-gain is calculated in: LQR_simulation/ sim_LQR.m 
+
+## paramter_estimation/
+A trying to use a optimization algorithm to minimize the sum of square error between model and simulation 
