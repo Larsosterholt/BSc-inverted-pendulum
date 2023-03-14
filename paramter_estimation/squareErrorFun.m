@@ -16,7 +16,7 @@ odeFunHandler = @(t, x) odeFunSys(t, x, p);
 
 % Cost function
 A = ((pendAngleMeasured - x(:,1)).^2);
-B = 0;%((x(:,3)-baseAngleMeasured).^2);
+B = ((x(:,3)-baseAngleMeasured).^2);
 obj = sum(A+B);
 
 %Return the cost
