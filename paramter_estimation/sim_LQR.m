@@ -35,8 +35,8 @@ p0(11) = K_e;
 
 
 % Lower and upper bounds
-lb = p0*0.8;
-ub = p0*1.2;
+lb = p0*0.5;
+ub = p0*1.5;
 
 % Test data to compare
 pendAngleMeasured = (-1)*impulseTest.pendAngle.signals.values + pi;
@@ -63,7 +63,8 @@ save('p.mat', 'p');
 save('fval.mat', 'fval');
 
 
-%% Plotting with values before optimizing:
+%% Plotting
+close all;
 tspan = [0:1/250:16];
 
 % Initial condition
@@ -74,45 +75,36 @@ x0 = [
     0;
     0];
 
-%  Runge-Kutta solver
+%  Befor optimizine
 odeFunHandler = @(t, x) odeFunSys(t, x, p0);
-[t, x] = ode45(odeFunHandler, tspan, x0);
+[t, xBefore] = ode45(odeFunHandler, tspan, x0);
 
-
-figure
-plot(t, x(:, 1), LineWidth=2);
-title('Pendulum angle'); ylabel('Angle [rad]'); xlabel('time [s]');
-
-figure
-plot(t, x(:, 3), LineWidth=2);
-title('Base angle'); ylabel('Angle [rad]'); xlabel('time [s]');
-figure
-
-plot(t, x(:, 5), LineWidth=2);
-
-%% Plotting with values after optimizing:
-tspan = [0:1/250:16];
-
-% Initial condition
-x0 = [
-    pi;
-    0;
-    0;
-    0;
-    0];
-
-%  Runge-Kutta solver
+% After optimizing
 odeFunHandler = @(t, x) odeFunSys(t, x, p);
-[t, x] = ode45(odeFunHandler, tspan, x0);
-
-
-figure
-plot(t, x(:, 1), LineWidth=2);
-title('Pendulum angle'); ylabel('Angle [rad]'); xlabel('time [s]');
+[t, xAfter] = ode45(odeFunHandler, tspan, x0);
 
 figure
-plot(t, x(:, 3), LineWidth=2);
+hold on
+plot(t, xBefore(:, 1), LineWidth=1);
+plot(t, xAfter(:, 1), '-.');
+plot(impulseTest.pendAngle.time, (-1)*impulseTest.pendAngle.signals.values + pi,LineWidth=1) %NB invetedtitle('Pendulum angle'); ylabel('Angle [rad]'); xlabel('time [s]');
+legend('Before', 'After', 'Real');
+title('Pend angle'); ylabel('Angle [rad]'); xlabel('time [s]');
+hold off
+
+figure
+hold on
+plot(t, xBefore(:, 3), LineWidth=1);
+plot(t, xAfter(:, 3), '-.');
+plot(impulseTest.pendAngle.time, impulseTest.baseAngle.signals.values,LineWidth=1) %NB invetedtitle('Pendulum angle'); ylabel('Angle [rad]'); xlabel('time [s]');
+legend('Before', 'After', 'Real');
 title('Base angle'); ylabel('Angle [rad]'); xlabel('time [s]');
-figure %
+hold off
 
-plot(t, x(:, 5), LineWidth=2);
+figure
+hold on
+plot(t, xBefore(:, 5), LineWidth=1);
+plot(t, xAfter(:, 5), '-.');
+legend('Before', 'After');
+title('Current'); ylabel('Current [A]'); xlabel('time [s]');
+hold off
