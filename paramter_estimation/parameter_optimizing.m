@@ -1,13 +1,23 @@
 clc; clear; close all;
 
 % Optimizing or not
-optimizing = true;
+optimizing = false;
 
 % Load test data and creating varibles for comparing the model
-load("data\impulsTest100.mat");
-disp(impulseTest.description)
-pendAngleMeasured = ((-1)*impulseTest.pendAngle.signals.values + pi)'; %Inverting
-baseAngleMeasured = (impulseTest.baseAngle.signals.values)';
+%load("data\impulsTest100.mat");
+%disp(impulseTest.description)
+%pendAngleMeasured = ((-1)*impulseTest.pendAngle.signals.values + pi)'; %Inverting
+%baseAngleMeasured = (impulseTest.baseAngle.signals.values)';
+
+% Load test data and creating varibles for comparing the model
+testNumber = 1;
+load("data\parEstTest.mat");
+disp(parEstTest(testNumber).description)
+pendAngleMeasured = -1*parEstTest(testNumber).pendAngleZeroDwn+pi;
+baseAngleMeasured = parEstTest(testNumber).baseAngle;
+currentMeasured = parEstTest(testNumber).Current;
+timeMeasurement = parEstTest(testNumber).time;
+pwmS
 
 % Load the previous results
 load("results.mat");

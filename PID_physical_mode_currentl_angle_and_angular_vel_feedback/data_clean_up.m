@@ -1,3 +1,4 @@
+%{
 testNumber = 'one';
 
 %load('data/rmsTest.mat')
@@ -14,3 +15,19 @@ rmsTest.(testNumber).description = "Test on model without current feedback"
 
 %save('data/rmsTest.mat', 'rmsTest')
 
+%}
+
+load('data/parEstTest.mat');
+
+testNumber = 2;
+parEstTest(testNumber).time = time;
+parEstTest(testNumber).timeTrigger = trigger;
+parEstTest(testNumber).Current = current;
+parEstTest(testNumber).PWM = PWM;
+
+parEstTest(testNumber).pendAngleZeroUp = pendZeroUp;
+parEstTest(testNumber).pendAngleZeroDwn = pendZeroDwn;
+parEstTest(testNumber).baseAngle = base;
+parEstTest(testNumber).description = "Impolse test, positive signal. Amplitude = 140."
+
+save('data/parEstTest.mat', 'parEstTest')
