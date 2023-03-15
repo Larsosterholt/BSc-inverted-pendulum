@@ -1,4 +1,4 @@
-function obj = squareErrorFun(p, pendAngleMeasured, baseAngleMeasured)
+function obj = costFun(p, pendAngleMeasured, baseAngleMeasured)
 
 % Simulate with the curren values of p
 ts = [0:1/200:16];

@@ -41,5 +41,6 @@ end
     -(K_e*x(4) - 0 + R*x(5))/L
     ];
 dxdt = dxdt + B*U; % Controller input
+
 end
 
