@@ -17,7 +17,6 @@ K_e = p(11);
 g = 9.81; % Known value
 B = [0 0 0 0 1/p(5)]'; % Known value
 
-
 % Creating the impulse responce
 if(t >= 0.5 & t <= 1)
     U = (100/255)*11;
