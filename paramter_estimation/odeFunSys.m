@@ -19,12 +19,12 @@ B = [0 0 0 0 1/p(5)]'; % Known value
 
 % Creating the impulse responce
 if(t >= 0.5 & t <= 1)
-    U = (100/255)*11;
+    U = (140/255)*10.5;
 else
     U = 0;
 end
 
-%Updating the vector
+%Updating the state
     dxdt = [
     x(2);
     -(g*m_P*sin(x(1)) - B_P*x(2) + l_P^2*m_P*cos(x(1))*sin(x(1))*x(4)^2 + ...
@@ -40,6 +40,7 @@ end
     -(K_e*x(4) - 0 + R*x(5))/L
     ];
 dxdt = dxdt + B*U; % Controller input
-
+if(t>=1)
+    dxdt(5) = -x(5)*100;
 end
 

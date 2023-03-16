@@ -1,4 +1,4 @@
-function obj = costFun(p, pendAngleMeasured, baseAngleMeasured)
+function obj = costFun(p, pendAngleMeasured, baseAngleMeasured, currentMeasured)
 
 
 ts = [0:1/200:16];
@@ -16,9 +16,10 @@ odeFunHandler = @(t, x) odeFunSys(t, x, p);
 
 
 % Cost function
-A = ((pendAngleMeasured - x(:,1)).^2);
+A = ((x(:,1) - pendAngleMeasured).^2);
 B = ((x(:,3)-baseAngleMeasured).^2);
-obj = sum(A+B);
+C = ((x(:,5)-currentMeasured).^2);
+obj = sum(A+B+C);
 
 % Return the cost
 obj = sum(obj);
