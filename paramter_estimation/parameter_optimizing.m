@@ -1,7 +1,7 @@
 clc; clear; close all;
 
 % Optimizing or not
-optimizing = true;
+optimizing = false;
 
 % Load test data and creating varibles for comparing the model
 testNumber = 2;
@@ -9,7 +9,7 @@ load("data\parEstTest.mat");
 disp(parEstTest(testNumber).description)
 pendAngleMeasured = -1*parEstTest(testNumber).pendAngleZeroDwn+pi;
 baseAngleMeasured = parEstTest(testNumber).baseAngle;
-currentMeasured = parEstTest(testNumber).Current+0.015;
+currentMeasured = parEstTest(testNumber).Current+0.015; % Addsing offset from current sensor
 timeMeasurement = parEstTest(testNumber).time;
 pwmSignalMeasured = parEstTest(testNumber).PWM;
 
@@ -37,7 +37,7 @@ p0(6) = m_P; p0(7) = B_B; p0(8) = B_P; p0(9) = R; p0(10) = K_t;
 p0(11) = K_e;
 
 % If the optimizing shold start from a previous result:
-p0 = results(numel(results)).p;
+%p0 = results(numel(results)).p*2;
 %% Optimizing
 
 % Lower and upper bounds
@@ -53,9 +53,7 @@ ub = p0*4;
 %ub(1:4) =ub(1:4)*3;
 %ub(7:8) =ub(7:8)*3;
 
-
-
-% Creaating function handler
+% Creaating function handler for cost function
 costFunHandler = @(p) costFun(p, pendAngleMeasured, baseAngleMeasured, currentMeasured);
 
 if(optimizing == true)
@@ -67,8 +65,8 @@ if(optimizing == true)
     % Start optimizing
     startTime = tic;
     [p, fval] = fmincon(costFunHandler, p0, [], [], [], [], lb, ub)
-    time_fmincon_parallel = toc(startTime);
-    fprintf('Parallel FMINCON optimization takes %g seconds.\n',time_fmincon_parallel);
+    time_fmincon = toc(startTime);
+    fprintf('FMINCON optimization takes %g seconds.\n',time_fmincon);
     
     % Save the new results
     results(numel(results)+1).p = p; % New optimized paramters
@@ -90,7 +88,7 @@ x0 = [
 
 %  Simulate with parameters befor optimizing
 odeFunHandler = @(t, x) odeFunSys(t, x, results(end).p0);
-[t, xBefore] = ode45(odeFunHandler, tspan, x0);
+[~, xBefore] = ode45(odeFunHandler, tspan, x0);
 
 %  Simulate with parameters after optimizing
 odeFunHandler = @(t, x) odeFunSys(t, x, results(end).p);
@@ -116,7 +114,6 @@ legend('Before optimizing', 'After optimizing', 'Real data');
 title('Base angle'); ylabel('Angle [rad]'); xlabel('time [s]');
 hold off
 
-% NB! No test data for current
 figure
 hold on
 plot(t, xBefore(:, 5), LineWidth=1);
@@ -124,4 +121,11 @@ plot(t, xAfter(:, 5), 'Color','r');
 plot(timeMeasurement,currentMeasured,'-.' , 'Color','k')
 legend('Before optimizing', 'After optimizing', 'Real data');
 title('Current'); ylabel('Current [A]'); xlabel('time [s]');
+hold off
+
+figure
+hold on
+plot(timeMeasurement,pwmSignalMeasured, 'Color','k')
+legend('Real data');
+title('Impulse signal. Voltage = (140/255)*10.5V'); ylabel('PWM [A]'); xlabel('time [s]');
 hold off
