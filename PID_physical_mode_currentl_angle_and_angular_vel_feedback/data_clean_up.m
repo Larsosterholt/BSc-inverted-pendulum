@@ -17,17 +17,17 @@ rmsTest.(testNumber).description = "Test on model without current feedback"
 
 %}
 
-load('data/parEstTest.mat');
+%load('data/currentStepTest.mat');
 
-testNumber = 2;
-parEstTest(testNumber).time = time;
-parEstTest(testNumber).timeTrigger = trigger;
-parEstTest(testNumber).Current = current;
-parEstTest(testNumber).PWM = PWM;
+testNumber = 3;
+currentStepTest(testNumber).time = time;
+currentStepTest(testNumber).timeTrigger = trigger;
+currentStepTest(testNumber).Current = current;
+currentStepTest(testNumber).PWM = PWM;
 
-parEstTest(testNumber).pendAngleZeroUp = pendZeroUp;
-parEstTest(testNumber).pendAngleZeroDwn = pendZeroDwn;
-parEstTest(testNumber).baseAngle = base;
-parEstTest(testNumber).description = "Impolse test, positive signal. Amplitude = 140."
+currentStepTest(testNumber).pendAngleZeroUp = pendZeroUp;
+currentStepTest(testNumber).pendAngleZeroDwn = pendZeroDwn;
+currentStepTest(testNumber).baseAngle = base;
+currentStepTest(testNumber).description = "Current step test amplitude = 255."
 
-save('data/parEstTest.mat', 'parEstTest')
+%save('data/currentStepTest.mat', 'currentStepTest')
