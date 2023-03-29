@@ -19,15 +19,16 @@ rmsTest.(testNumber).description = "Test on model without current feedback"
 
 %load('data/currentStepTest.mat');
 
-testNumber = 3;
-currentStepTest(testNumber).time = time;
-currentStepTest(testNumber).timeTrigger = trigger;
-currentStepTest(testNumber).Current = current;
-currentStepTest(testNumber).PWM = PWM;
+testNumber = 2;
+baseTest(testNumber).time = time;
+baseTest(testNumber).timeTrigger = trigger;
+baseTest(testNumber).Current = current;
+baseTest(testNumber).PWM = PWM;
 
-currentStepTest(testNumber).pendAngleZeroUp = pendZeroUp;
-currentStepTest(testNumber).pendAngleZeroDwn = pendZeroDwn;
-currentStepTest(testNumber).baseAngle = base;
-currentStepTest(testNumber).description = "Current step test amplitude = 255."
+baseTest(testNumber).pendAngleZeroUp = pendZeroUp;
+baseTest(testNumber).pendAngleZeroDwn = pendZeroDwn;
+baseTest(testNumber).baseAngle = base;
+baseTest(testNumber).baseAngleVel = baseVel;
+baseTest(testNumber).description = "Base vel filter tau = 0.05."
 
-%save('data/currentStepTest.mat', 'currentStepTest')
+%save('data/baseTest.mat', 'baseTest')
