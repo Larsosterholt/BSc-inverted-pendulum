@@ -7,9 +7,10 @@ R = 5.0;
 Ib = 3.6458e-4; % inital
 Bb = 1e-4; % inital
 StictionB = 1e-4; % inital
+%% 
 
 % Simulate
-simulationBefore = sim("BbIb_parameter_estimation.slx")
+simulationBefore = sim("BbIb_parameter_estimation.slx");
 
 %%
 
@@ -18,7 +19,14 @@ load("IbNew.mat");
 load("BbNew.mat");
 
 %Simulate with optimized varibles
+StictionB = 0;
 simulationAfter = sim("BbIb_parameter_estimation.slx");
+
+% Load optimized varibles with stiction
+load("IbStiction.mat");
+load("BbStiction.mat");
+load("StictionB.mat");
+simulationAfterStiction = sim("BbIb_parameter_estimation.slx");
 
 % Load test tata
 load("baseTest.mat");
@@ -53,7 +61,7 @@ hold off
 %writetable(T, "testDataGaussian2.csv")
 %}
 
-
+%%
 %Plotting paramters 
 W_frame = 16;     % Final width of the frame [cm] of the plot in your document
 H_frame = 8;      % Final height of the frame [cm] of the plot in your document
@@ -84,7 +92,7 @@ hold on
 %plt1.LineStyleMode = "manual"
 %plt1.LineWidth  = LW1;
 
-plt2 = plot(baseTest(2).time, baseTest(2).baseAngleVel);
+plt2 = plot(baseTest(3).time, baseTest(2).baseAngleVel);
 plt2.Color = 'r';
 plt2.LineStyle = '-';
 plt2.LineWidth = LW1;
@@ -94,9 +102,15 @@ plt3.Color = '#2196f3';
 plt3.LineWidth  = LW1;
 plt3.LineStyle = '-.';
 
-plt4 = plot(simulationAfter.time, simulationAfter.out);
+plt4 = plot(simulationAfterStiction.time, simulationAfterStiction.out);
 plt4.Color = '#5f0000';
 plt4.LineWidth  = LW1;
+
+%plt4 = plot(simulationAfter.time, simulationAfter.outFirstOrder);
+%plt4.Color = '#5f0000';
+%plt4.LineWidth  = LW1;
+
+
 
 ax.Units = 'centimeters';
 ax.GridLineStyle = '--';                % '-' '--' ':' '-.'
@@ -111,7 +125,7 @@ label_x = xlabel('Time, [s]');
 label_x.Units = "centimeters";
 label_x.Position = [xlabel_x, xlabel_y];
 
-label_y = ylabel('Pendulum angle [rad]');
+label_y = ylabel('Base angle [rad]');
 label_y.Units = "centimeters";
 label_y.Position = [ylabel_x, ylabel_y];
 
@@ -120,6 +134,72 @@ yaxis([ax.YTick(1) ax.YTick(end)]);
 %leg = legend('Test data', 'i = k*U*(1-exp(1/tau*t)) ');
 %leg = legend('Test data', '$i(t) = k \cdot U(t) \cdot (1-e^{-\frac{1}{\tau}t})$','Interpreter','latex')
 leg = legend('Test data 1 (Exp)', 'Before optimizing', 'After optimizing' );
+leg.Location = "north";
+
+hold off
+grid on
+box on
+
+
+%% Comparing results
+%Plotting 
+fig = figure;           % Handle for the figure
+ax = gca;               % Handle for the axis
+
+%Data Point Formatting
+fig.Units = 'centimeters';
+fig.Position = [LLC_frame W_frame H_frame];
+% Specifying the position of the lower left corner + the width and height of the frame
+
+hold on
+%plt1 = plot(baseTest(testNumber).time, baseTest(testNumber).baseAngleVel);
+%plt1.Color = '#00695c';    % y, m, c, r, g, b, w, k,
+%plt1.LineStyle ='-';% '-', '--', ':', '-.'
+%plt1.LineStyleMode = "manual"
+%plt1.LineWidth  = LW1;
+
+plt2 = plot(baseTest(3).time, baseTest(2).baseAngleVel);
+plt2.Color = 'r';
+plt2.LineStyle = '-';
+plt2.LineWidth = LW1;
+
+plt3 = plot(simulationAfterStiction.time, simulationAfterStiction.out);
+plt3.Color = '#5f0000';
+plt3.LineWidth  = LW1;
+plt3.LineStyle = '-';
+
+plt4 = plot(simulationAfter.time, simulationAfter.out);
+plt4.Color = '#2196f3';
+plt4.LineWidth  = LW1;
+
+plt5 = plot(simulationAfter.time, simulationAfter.outFirstOrder);
+%plt5.Color = '#070070';
+plt5.LineWidth  = LW1;
+
+
+
+ax.Units = 'centimeters';
+ax.GridLineStyle = '--';                % '-' '--' ':' '-.'
+ax.Position = [LLC_axis W_axis H_axis];
+ax.FontName = 'Times New Roman';
+ax.FontSize = AxisFontSize;             % Specified above
+ax.XTick = [0:5:40];                    % Divisions on axes
+ax.YTick = [-50:10:50];                    % Divisions on axes
+%axis([tmin, tmax, -5, 5]);              % lower and upper limit
+%Axis Labels and Legend
+label_x = xlabel('Time, [s]');
+label_x.Units = "centimeters";
+label_x.Position = [xlabel_x, xlabel_y];
+
+label_y = ylabel('Base angle [rad]');
+label_y.Units = "centimeters";
+label_y.Position = [ylabel_x, ylabel_y];
+
+yaxis([ax.YTick(1) ax.YTick(end)]);
+
+%leg = legend('Test data', 'i = k*U*(1-exp(1/tau*t)) ');
+%leg = legend('Test data', '$i(t) = k \cdot U(t) \cdot (1-e^{-\frac{1}{\tau}t})$','Interpreter','latex')
+leg = legend('Test data 1 (Exp)', 'With stiction', 'Without stiction', 'First order approximation');
 leg.Location = "north";
 
 hold off

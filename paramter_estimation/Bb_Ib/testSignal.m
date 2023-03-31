@@ -1,59 +1,7 @@
 clc; clear; close all;
-% parameters
-L = 0.0625;
-Ke = 0.089240515;
-Kt = 0.089240515;
-R = 5.0;
-Ib = 3.6458e-4; % inital
-Bb = 1e-4; % inital
-StictionB = 1e-4; % inital
 
-% Simulate
-simulationBefore = sim("BbIb_parameter_estimation.slx")
-
-%%
-
-% Load optimized varibles
-load("IbNew.mat"); 
-load("BbNew.mat");
-
-%Simulate with optimized varibles
-simulationAfter = sim("BbIb_parameter_estimation.slx");
-
-% Load test tata
-load("baseTest.mat");
-testNumber = 3;
-disp(baseTest(testNumber).description)
-%{
-
-figure
-title('Base angle vel. No pendulum')
-ylabel('Angle vel [rad/s]');
-xlabel('time [s]');
-hold on
-%plot(BaseTest.baseAngleVelRaw.time, BaseTest.baseAngleVelRaw.signals.values,LineWidth=2)
-plot(baseTest(testNumber).time, baseTest(testNumber).baseAngleVel)
-plot(baseTest(2).time, baseTest(2).baseAngleVel)
-
-plot(simulationBefore.time, simulationBefore.out)
-plot(simulationAfter.time, simulationAfter.out)
-legend('Physical model');
-hold off
-%}
-
-
-
-
-%{
-%tab.time = baseTest(testNumber).time;
-%tab.baseVel = baseTest(testNumber).baseAngleVel;
-%tab.volts = baseTest(testNumber).PWM*10/255;
-
-%T = struct2table(tab)
-%writetable(T, "testDataGaussian2.csv")
-%}
-
-
+%% plotting test signal
+load("testSignal.mat")
 %Plotting paramters 
 W_frame = 16;     % Final width of the frame [cm] of the plot in your document
 H_frame = 8;      % Final height of the frame [cm] of the plot in your document
@@ -78,25 +26,13 @@ fig.Position = [LLC_frame W_frame H_frame];
 % Specifying the position of the lower left corner + the width and height of the frame
 
 hold on
-%plt1 = plot(baseTest(testNumber).time, baseTest(testNumber).baseAngleVel);
-%plt1.Color = '#00695c';    % y, m, c, r, g, b, w, k,
-%plt1.LineStyle ='-';% '-', '--', ':', '-.'
-%plt1.LineStyleMode = "manual"
-%plt1.LineWidth  = LW1;
+plt1 = plot(testSignal.time, testSignal.signal(: ,1));
+plt1.Color = '#00695c';    % y, m, c, r, g, b, w, k,
+plt1.LineStyle ='-';% '-', '--', ':', '-.'
+plt1.LineStyleMode = "manual";
+plt1.LineWidth  = LW1;
 
-plt2 = plot(baseTest(2).time, baseTest(2).baseAngleVel);
-plt2.Color = 'r';
-plt2.LineStyle = '-';
-plt2.LineWidth = LW1;
 
-plt3 = plot(simulationBefore.time, simulationBefore.out);
-plt3.Color = '#2196f3';
-plt3.LineWidth  = LW1;
-plt3.LineStyle = '-.';
-
-plt4 = plot(simulationAfter.time, simulationAfter.out);
-plt4.Color = '#5f0000';
-plt4.LineWidth  = LW1;
 
 ax.Units = 'centimeters';
 ax.GridLineStyle = '--';                % '-' '--' ':' '-.'
@@ -104,14 +40,14 @@ ax.Position = [LLC_axis W_axis H_axis];
 ax.FontName = 'Times New Roman';
 ax.FontSize = AxisFontSize;             % Specified above
 ax.XTick = [0:5:40];                    % Divisions on axes
-ax.YTick = [-50:10:50];                    % Divisions on axes
+ax.YTick = [-10:2:10];                    % Divisions on axes
 %axis([tmin, tmax, -5, 5]);              % lower and upper limit
 %Axis Labels and Legend
 label_x = xlabel('Time, [s]');
 label_x.Units = "centimeters";
 label_x.Position = [xlabel_x, xlabel_y];
 
-label_y = ylabel('Pendulum angle [rad]');
+label_y = ylabel('Voltage [v]');
 label_y.Units = "centimeters";
 label_y.Position = [ylabel_x, ylabel_y];
 
@@ -119,9 +55,55 @@ yaxis([ax.YTick(1) ax.YTick(end)]);
 
 %leg = legend('Test data', 'i = k*U*(1-exp(1/tau*t)) ');
 %leg = legend('Test data', '$i(t) = k \cdot U(t) \cdot (1-e^{-\frac{1}{\tau}t})$','Interpreter','latex')
-leg = legend('Test data 1 (Exp)', 'Before optimizing', 'After optimizing' );
+leg = legend('Test signal');
 leg.Location = "north";
 
 hold off
 grid on
 box on
+
+
+
+%Plotting 
+fig = figure;           % Handle for the figure
+ax = gca;               % Handle for the axis
+
+% Load test tata
+load("baseTest.mat");
+
+%Data Point Formatting
+fig.Units = 'centimeters';
+fig.Position = [LLC_frame W_frame H_frame];
+% Specifying the position of the lower left corner + the width and height of the frame
+
+hold on
+plt1 = plot(baseTest(2).time, baseTest(2).baseAngleVel);
+%plt1.Color = 'r';
+plt1.LineStyle = '-.';
+plt1.LineWidth = LW1;
+
+
+
+ax.Units = 'centimeters';
+ax.GridLineStyle = '--';                % '-' '--' ':' '-.'
+ax.Position = [LLC_axis W_axis H_axis];
+ax.FontName = 'Times New Roman';
+ax.FontSize = AxisFontSize;             % Specified above
+ax.XTick = [0:5:40];                    % Divisions on axes
+ax.YTick = [-10:2:10];                    % Divisions on axes
+%axis([tmin, tmax, -5, 5]);              % lower and upper limit
+%Axis Labels and Legend
+label_x = xlabel('Time, [s]');
+label_x.Units = "centimeters";
+label_x.Position = [xlabel_x, xlabel_y];
+
+label_y = ylabel('Voltage [v]');
+label_y.Units = "centimeters";
+label_y.Position = [ylabel_x, ylabel_y];
+
+yaxis([ax.YTick(1) ax.YTick(end)]);
+
+%leg = legend('Test data', 'i = k*U*(1-exp(1/tau*t)) ');
+%leg = legend('Test data', '$i(t) = k \cdot U(t) \cdot (1-e^{-\frac{1}{\tau}t})$','Interpreter','latex')
+leg = legend('Test signal');
+leg.Location = "north";

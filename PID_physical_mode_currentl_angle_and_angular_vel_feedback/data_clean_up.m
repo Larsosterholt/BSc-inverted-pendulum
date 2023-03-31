@@ -17,9 +17,9 @@ rmsTest.(testNumber).description = "Test on model without current feedback"
 
 %}
 
-%load('data/currentStepTest.mat');
+load('data/baseTest.mat');
 
-testNumber = 2;
+testNumber = 5;
 baseTest(testNumber).time = time;
 baseTest(testNumber).timeTrigger = trigger;
 baseTest(testNumber).Current = current;
@@ -29,6 +29,6 @@ baseTest(testNumber).pendAngleZeroUp = pendZeroUp;
 baseTest(testNumber).pendAngleZeroDwn = pendZeroDwn;
 baseTest(testNumber).baseAngle = base;
 baseTest(testNumber).baseAngleVel = baseVel;
-baseTest(testNumber).description = "Base vel filter tau = 0.05."
+baseTest(testNumber).description = "Base vel filter tau = 0.05. Gaussian2"
 
 %save('data/baseTest.mat', 'baseTest')
