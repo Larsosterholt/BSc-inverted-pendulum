@@ -111,7 +111,7 @@ label_x = xlabel('Time, [s]');
 label_x.Units = "centimeters";
 label_x.Position = [xlabel_x, xlabel_y];
 
-label_y = ylabel('Pendulum angle [rad]');
+label_y = ylabel('Pendulum angle velocity [rad]');
 label_y.Units = "centimeters";
 label_y.Position = [ylabel_x, ylabel_y];
 
@@ -125,3 +125,8 @@ leg.Location = "north";
 hold off
 grid on
 box on
+
+%% Rms
+
+rmsBefore = sum((baseTest(2).baseAngleVel-simulationBefore.out).^2)
+rmsAfter = sum((baseTest(2).baseAngleVel-simulationAfter.out).^2)

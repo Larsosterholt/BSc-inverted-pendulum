@@ -14,7 +14,7 @@ simulationBefore = sim("BbIb_parameter_estimation.slx");
 
 %%
 
-% Load optimized varibles
+% Load optimized varibles without stiction
 load("IbNew.mat"); 
 load("BbNew.mat");
 
@@ -125,7 +125,7 @@ label_x = xlabel('Time, [s]');
 label_x.Units = "centimeters";
 label_x.Position = [xlabel_x, xlabel_y];
 
-label_y = ylabel('Base angle [rad]');
+label_y = ylabel('Base angle velocity [rad/s]');
 label_y.Units = "centimeters";
 label_y.Position = [ylabel_x, ylabel_y];
 
@@ -191,7 +191,7 @@ label_x = xlabel('Time, [s]');
 label_x.Units = "centimeters";
 label_x.Position = [xlabel_x, xlabel_y];
 
-label_y = ylabel('Base angle [rad]');
+label_y = ylabel('Base angle velocity [rad/s]');
 label_y.Units = "centimeters";
 label_y.Position = [ylabel_x, ylabel_y];
 
@@ -205,3 +205,10 @@ leg.Location = "north";
 hold off
 grid on
 box on
+
+%% RMS 
+rmsBeforeStiction = sum((baseTest(2).baseAngleVel - simulationBefore.out).^2)
+rmsAfterStiction = sum((baseTest(2).baseAngleVel - simulationAfterStiction.out).^2)
+
+rmsBeforeFirst = sum((baseTest(2).baseAngleVel - simulationBefore.outFirstOrder).^2)
+rmsAfterFirst = sum((baseTest(2).baseAngleVel - simulationAfter.outFirstOrder).^2)
