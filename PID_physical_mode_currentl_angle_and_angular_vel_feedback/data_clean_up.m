@@ -29,6 +29,6 @@ baseTest(testNumber).pendAngleZeroUp = pendZeroUp;
 baseTest(testNumber).pendAngleZeroDwn = pendZeroDwn;
 baseTest(testNumber).baseAngle = base;
 baseTest(testNumber).baseAngleVel = baseVel;
-baseTest(testNumber).description = "Base vel filter tau = 0.05. Gaussian2"
+baseTest(testNumber).description = "Base vel filter tau = 0.05. Gaussian2";
 
 %save('data/baseTest.mat', 'baseTest')

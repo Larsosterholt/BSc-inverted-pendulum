@@ -16,9 +16,7 @@ R = 5.0; % [Omh] Motor resistance.
 K_t = 0.089240515; % [Nm/A] Motor tourqe constant.
 K_e = 0.089240515; % [V/(rad/s)] Motor back EMF constant.
 
-
 %% For LQR
-
 
 % Linear system matrix
 A = [0, 1, 0, 0, 0;
@@ -40,13 +38,13 @@ Q = [
     ];
 
 % Actuation cost
-RLQR = 0.1;
+RLQR = 100;
 
 % Calculationg LQR gain
 kLqr = lqr(A, B, Q, RLQR);
 
 % Swing-up controller gain
-kSwingUp = -(110/255)*11;
+kSwingUp = -4.7;
 U = 0;
 
 %% Simulate the system and controllers
@@ -79,6 +77,177 @@ figure
 plot(t, x(:, 5), LineWidth=2);
 title('Current'); ylabel('Current [A]'); xlabel('time [s]');
 
+%% Plotting for the report 1552
+%Plotting paramters 
+W_frame = 16;     % Final width of the frame [cm] of the plot in your document
+H_frame = 8;      % Final height of the frame [cm] of the plot in your document
+LLC_frame = [5,5];% Position of lower left corner of the frame on the screen [cm]
+W_axis = 14.5;    % Width of axis [cm]
+H_axis = 6.7;     % Height of axis [cm]
+LLC_axis = [1.25, 1.1]; % Position of lower left corner of the axes on the frame [cm]
+xlabel_x = W_axis/2;% x-position of the x-label
+xlabel_y = -0.6;  % y-position of the x-label [cm]
+ylabel_x = -0.6;  % x-position of the y-label [cm]
+ylabel_y = H_axis/2;% y-position of the y-label
+AxisFontSize = 11;% Font size for axis text in the final plot in your document
+LW1 = 1;          % Line width of lines on plot
+LW2 = 2;          % Line width of lines on plot
+
+%Plotting 
+fig = figure;           % Handle for the figure
+ax = gca;               % Handle for the axis
+
+%Data Point Formatting
+fig.Units = 'centimeters';
+fig.Position = [LLC_frame W_frame H_frame];
+% Specifying the position of the lower left corner + the width and height of the frame
+
+hold on
+plt1 = plot(t, x(:, 1), LineWidth=2);
+plt1.Color = '#5f0000';    % y, m, c, r, g, b, w, k,
+plt1.LineStyle ='-';% '-', '--', ':', '-.'
+plt1.LineWidth  = LW2;
+
+ax.Units = 'centimeters';
+ax.GridLineStyle = '--';                % '-' '--' ':' '-.'
+ax.Position = [LLC_axis W_axis H_axis];
+ax.FontName = 'Times New Roman';
+ax.FontSize = AxisFontSize;             % Specified above
+ax.XTick = [0:1:8];                    % Divisions on axes
+ax.YTick = [-1:1:6];                    % Divisions on axes
+%axis([tmin, tmax, -5, 5]);              % lower and upper limit
+%Axis Labels and Legend
+label_x = xlabel('Time, [s]');
+label_x.Units = "centimeters";
+label_x.Position = [xlabel_x, xlabel_y];
+
+label_y = ylabel('Pendulum angle [rad]');
+label_y.Units = "centimeters";
+label_y.Position = [ylabel_x, ylabel_y];
+
+yaxis([ax.YTick(1) ax.YTick(end)]);
+
+triggerTime = 4.0122;
+lengthOfPltTime = ax.XTick(end);
+yl = [ax.YTick(1) ax.YTick(end)];
+patch([0 0 triggerTime triggerTime],[yl(1) yl(2) yl(2) yl(1)],'k',...
+    'facecolor',[.4 .6 .4],'edgecolor',[.4 .6 .4],...
+    'facealpha',0.3,'edgealpha',0.3)
+
+patch([triggerTime triggerTime lengthOfPltTime lengthOfPltTime] ,[yl(1) yl(2) yl(2) yl(1)],'k',...
+    'facecolor',[.1 .2 .4],'edgecolor',[.1 .2 .4],...
+    'facealpha',0.3,'edgealpha',0.3)
+
+leg = legend('Simulation', 'Swing-up controller', 'LQR');
+leg.Location = "northeast";
+
+hold off
+grid on
+box on
+
+%Plotting 
+fig = figure;           % Handle for the figure
+ax = gca;               % Handle for the axis
+
+%Data Point Formatting
+fig.Units = 'centimeters';
+fig.Position = [LLC_frame W_frame H_frame];
+% Specifying the position of the lower left corner + the width and height of the frame
+
+hold on
+plt1 = plot(t, x(:, 3), LineWidth=2);
+plt1.Color = '#5f0000';    % y, m, c, r, g, b, w, k,
+plt1.LineStyle ='-';% '-', '--', ':', '-.'
+plt1.LineWidth  = LW2;
+
+ax.Units = 'centimeters';
+ax.GridLineStyle = '--';                % '-' '--' ':' '-.'
+ax.Position = [LLC_axis W_axis H_axis];
+ax.FontName = 'Times New Roman';
+ax.FontSize = AxisFontSize;             % Specified above
+ax.XTick = [0:1:8];                    % Divisions on axes
+ax.YTick = [-6:1:0];                    % Divisions on axes
+%axis([tmin, tmax, -5, 5]);              % lower and upper limit
+%Axis Labels and Legend
+label_x = xlabel('Time, [s]');
+label_x.Units = "centimeters";
+label_x.Position = [xlabel_x, xlabel_y];
+
+label_y = ylabel('Base angle [rad]');
+label_y.Units = "centimeters";
+label_y.Position = [ylabel_x, ylabel_y];
+
+yaxis([ax.YTick(1) ax.YTick(end)]);
+
+triggerTime = 4.0122;
+lengthOfPltTime = ax.XTick(end);
+yl = [ax.YTick(1) ax.YTick(end)];
+patch([0 0 triggerTime triggerTime],[yl(1) yl(2) yl(2) yl(1)],'k',...
+    'facecolor',[.4 .6 .4],'edgecolor',[.4 .6 .4],...
+    'facealpha',0.3,'edgealpha',0.3)
+
+patch([triggerTime triggerTime lengthOfPltTime lengthOfPltTime] ,[yl(1) yl(2) yl(2) yl(1)],'k',...
+    'facecolor',[.1 .2 .4],'edgecolor',[.1 .2 .4],...
+    'facealpha',0.3,'edgealpha',0.3)
+
+leg = legend('Simulation', 'Swing-up controller', 'LQR');
+leg.Location = "north";
+
+hold off
+grid on
+box on
+
+%Plotting 
+fig = figure;           % Handle for the figure
+ax = gca;               % Handle for the axis
+
+%Data Point Formatting
+fig.Units = 'centimeters';
+fig.Position = [LLC_frame W_frame H_frame];
+% Specifying the position of the lower left corner + the width and height of the frame
+
+hold on
+plt1 = plot(t, x(:, 5), LineWidth=2);
+plt1.Color = '#5f0000';    % y, m, c, r, g, b, w, k,
+plt1.LineStyle ='-';% '-', '--', ':', '-.'
+plt1.LineWidth  = LW2;
+
+ax.Units = 'centimeters';
+ax.GridLineStyle = '--';                % '-' '--' ':' '-.'
+ax.Position = [LLC_axis W_axis H_axis];
+ax.FontName = 'Times New Roman';
+ax.FontSize = AxisFontSize;             % Specified above
+ax.XTick = [0:1:8];                    % Divisions on axes
+ax.YTick = [-2:0.5:1.5];                    % Divisions on axes
+%axis([tmin, tmax, -5, 5]);              % lower and upper limit
+%Axis Labels and Legend
+label_x = xlabel('Time, [s]');
+label_x.Units = "centimeters";
+label_x.Position = [xlabel_x, xlabel_y];
+
+label_y = ylabel('Current [A]');
+label_y.Units = "centimeters";
+label_y.Position = [ylabel_x, ylabel_y];
+
+yaxis([ax.YTick(1) ax.YTick(end)]);
+
+triggerTime = 4.0122;
+lengthOfPltTime = ax.XTick(end);
+yl = [ax.YTick(1) ax.YTick(end)];
+patch([0 0 triggerTime triggerTime],[yl(1) yl(2) yl(2) yl(1)],'k',...
+    'facecolor',[.4 .6 .4],'edgecolor',[.4 .6 .4],...
+    'facealpha',0.3,'edgealpha',0.3)
+
+patch([triggerTime triggerTime lengthOfPltTime lengthOfPltTime] ,[yl(1) yl(2) yl(2) yl(1)],'k',...
+    'facecolor',[.1 .2 .4],'edgecolor',[.1 .2 .4],...
+    'facealpha',0.3,'edgealpha',0.3)
+
+leg = legend('Simulation', 'Swing-up controller', 'LQR');
+leg.Location = "northeast";
+
+hold off
+grid on
+box on
 %% Functions
 function dxdt = odeFun(t, x, l_B, l_P, I_B, I_P, L, m_P, B_B, B_P, R, g, K_t, K_e, B, U, kSwingUp, kLqr)
 
@@ -104,7 +273,7 @@ end
 
 function U = swingUp(x, kSwingUp)
 % Swing up controller
-U = kSwingUp*(sign(x(2))*sign((cos(x(1)))));
+U = kSwingUp*sign(x(2)*sign(cos(x(1))));
 end
 
 
