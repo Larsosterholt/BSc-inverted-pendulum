@@ -9,7 +9,7 @@ Bb = 1e-4; % inital
 StictionB = 1e-4; % inital
 
 % Simulate
-simulationBefore = sim("BbIb_parameter_estimation.slx")
+simulationBefore = sim("BbIb_parameter_estimation.slx");
 
 %%
 
@@ -114,8 +114,6 @@ label_x.Position = [xlabel_x, xlabel_y];
 label_y = ylabel('Pendulum angle velocity [rad]');
 label_y.Units = "centimeters";
 label_y.Position = [ylabel_x, ylabel_y];
-
-yaxis([ax.YTick(1) ax.YTick(end)]);
 
 %leg = legend('Test data', 'i = k*U*(1-exp(1/tau*t)) ');
 %leg = legend('Test data', '$i(t) = k \cdot U(t) \cdot (1-e^{-\frac{1}{\tau}t})$','Interpreter','latex')
